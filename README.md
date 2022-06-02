@@ -1,5 +1,5 @@
 # List Generation (Optional)
-Connect to the OpenShift base cluster and run:
+Connect to the OpenShift base cluster and run the following from a `bash` shell:
 ```bash
 scripts/all-api-versions | sort > base-cluster-api-versions.txt
 ```
