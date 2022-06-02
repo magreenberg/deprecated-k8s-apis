@@ -40,8 +40,12 @@ volumesnapshotclasses                snapshot.storage.k8s.io/v1beta1
 volumesnapshotcontents               snapshot.storage.k8s.io/v1beta1
 volumesnapshots                      snapshot.storage.k8s.io/v1beta1
 ```
-
-Check the output for lines similar to:
+# Identifying Deprecated APIs
+Run the script `scripts/find-deprecated-apis.sh` and pass as an argument the deprecated API list generated from the step above or created manually. For example:
+```bash
+scripts/find-deprecated-apis.sh deprecated-apis.txt
+```
+Check the output of the for lines similar to:
 ```
 === ingresses.v1beta1.extensions ===
 VERBS       USERNAME                        USERAGENT
