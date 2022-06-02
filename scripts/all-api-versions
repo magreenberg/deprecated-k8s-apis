@@ -1,0 +1,27 @@
+#!/bin/bash
+OC=$(command -v oc &> /dev/null && echo oc)
+[[ -z "${OC}" ]] && OC=$(command -v kubectl &> /dev/null && echo kubectl)
+if [ -z "${OC}" ];then
+	echo "$(basename $0): Failed to find \"oc\" or \"kubectl\""
+	exit 1
+fi
+
+tryprint() {
+    (${OC} explain $1 --api-version=$2 | awk "/^VERSION:/{print \"$1 \" \$2}") 2>/dev/null
+}
+
+ALLVERSIONS=$(${OC} api-versions)
+
+for resource in $(${OC} api-resources -o name --sort-by=name);do
+    apigroup=$(echo ${resource} | cut -d. -f 2-)
+    resourcename=$(echo ${resource} | cut -d. -f 1)
+    if [ "${apigroup}" != "${resourcename}" ];then
+        for apiversion in ${ALLVERSIONS};do
+            if [[ "${apiversion}" =~ ^${apigroup}/ ]];then
+                tryprint ${resourcename} ${apiversion}
+            fi
+        done
+    else
+        tryprint ${resourcename} ""
+    fi
+done | column -t
