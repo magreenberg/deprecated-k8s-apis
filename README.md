@@ -11,7 +11,7 @@ Identify the list of APIs that are not available in the target cluster using:
 ```bash
 comm -23 base-cluster-api-versions.txt  target-cluster-api-versions.txt > deprecated-apis.txt
 ```
-For example, when comparing OCP 4.8 with OCP 4.10 the contents of the file `deprecated-apis.txt` might be similar to the following:
+For example, when comparing Kubernetes 1.21 with Kubernetes 1.22 the contents of the file `deprecated-apis.txt` might be similar to the following:
 ```
 apiservices                          apiregistration.k8s.io/v1beta1
 certificatesigningrequests           certificates.k8s.io/v1beta1
@@ -36,9 +36,6 @@ subjectaccessreviews                 authorization.k8s.io/v1beta1
 tokenreviews                         authentication.k8s.io/v1beta1
 validatingwebhookconfigurations      admissionregistration.k8s.io/v1beta1
 volumeattachments                    storage.k8s.io/v1beta1
-volumesnapshotclasses                snapshot.storage.k8s.io/v1beta1
-volumesnapshotcontents               snapshot.storage.k8s.io/v1beta1
-volumesnapshots                      snapshot.storage.k8s.io/v1beta1
 ```
 # Identifying Deprecated APIs
 Run the script `scripts/find-deprecated-apis.sh` and pass as an argument the deprecated API list generated from the step above or created manually. For example:
