@@ -37,10 +37,10 @@ tokenreviews                         authentication.k8s.io/v1beta1
 validatingwebhookconfigurations      admissionregistration.k8s.io/v1beta1
 volumeattachments                    storage.k8s.io/v1beta1
 ```
-# Identifying Deprecated APIs
-Run the script `scripts/find-deprecated-apis.sh` and pass as an argument the deprecated API list generated from the step above or created manually. For example:
+# Identifying Deprecated APIs by Request Counts
+Run the script `scripts/find-deprecated-apis-by-requestcount.sh` and pass as an argument the deprecated API list generated from the step above or created manually. For example:
 ```bash
-scripts/find-deprecated-apis.sh deprecated-apis.txt
+scripts/find-deprecated-apis-by-requestcount.sh deprecated-apis.txt
 ```
 Check the output of the for lines similar to:
 ```
@@ -52,3 +52,11 @@ list watch  system:kube-controller-manager  kube-controller-manager/v1.21.8+ed4d
 Messages of the form `Error from server (NotFound)` can be ignored.
 
 Refer to the document [Preparing to upgrade to OpenShift Container Platform 4.9](https://access.redhat.com/articles/6329921) regarding which messages can be ignored.
+
+# Identifying Deprecated APIs by Request Counts
+Usage of this script is not recommended as it will generate statistics in the `Request Counts` described in the section above.
+
+In order to find deprecated APIs that are currently in use run:
+```bash
+scripts/find-deprecated-apis-by-usage.sh deprecated-apis.txt
+```
