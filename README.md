@@ -20,6 +20,7 @@ list watch  system:kube-controller-manager  kube-controller-manager/v1.21.8+ed4d
 ```
 
 Kubernetes components will be upgraded automatically and can be ignored. APIs used by operators and user applications should be updated before attempting a cluster upgrade.
+<!--
 # Identifying Deprecated APIs by Request Counts
 Usage of this script is not recommended as it will generate statistics in the `Request Counts` described in the section above.
 
@@ -27,3 +28,4 @@ In order to find deprecated APIs that are currently in use run:
 ```bash
 scripts/find-deprecated-apis-by-usage.sh deprecated-apis.txt
 ```
+-->
