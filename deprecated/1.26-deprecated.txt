@@ -1,0 +1,3 @@
+flowschemas                      flowcontrol.apiserver.k8s.io/v1beta1
+horizontalpodautoscalers         autoscaling/v2beta2
+prioritylevelconfigurations      flowcontrol.apiserver.k8s.io/v1beta1

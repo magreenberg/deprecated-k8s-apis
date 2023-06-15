@@ -1,0 +1,7 @@
+cronjobs                         batch/v1beta1
+endpointslices                   discovery.k8s.io/v1beta1
+events                           events.k8s.io/v1beta1
+horizontalpodautoscalers         autoscaling/v2beta1
+poddisruptionbudgets             policy/v1beta1
+podsecuritypolicies              policy/v1beta1
+runtimeclasses                   node.k8s.io/v1beta1
