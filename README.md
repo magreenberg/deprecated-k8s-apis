@@ -1,5 +1,16 @@
 # Introduction
-Documentation on Kubernetes deprecated APIs can be found in the [Deprecated API Migration Guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/). That being said, it has been found that APIs were deprecated without appearing in the document. The first section of this document describes how to generate a complete list of available Kubernetes APIs for a given Kubernetes version. This list can be compared to lists generated for newer versions of Kubernetes in order to find deprecated APIs.
+This repository provides scripts and data used to determine whether deprecated APIs are being used on a Kubernetes cluster.
+
+Documentation on Kubernetes deprecated APIs can be found in the [Deprecated API Migration Guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/). 
+That being said, it has been found that APIs were deprecated without appearing in the document. The first section of this document provides a procedure that compares all available APIs in different Kubernetes versions and identifies which were removed between consecutive version. The scripts used for this procedure are present here for the use of the user. The scripts have been run on Kubernetes version 1.22 through 1.27 and the results are available in the [deprecated](./deprecated) directory.
+
+The second section of the documents checks whether any of the deprecated APIs were created/queried in the previous 24 hours.
+
+## Notes on Kubernetes Handling Deprecated APIs
+As discussed in [Kubernetes Issue 58131](https://github.com/kubernetes/kubernetes/issues/58131), Kubernetes stores API instances in `etcd` using the latest version. Therefore, for exampl,e if a deprecated CronJob instance is created with `apiVersion: batch/v1beta1`, from Kubernetes 1.21 and newer, the API would be stored internally as `apiVersion: batch/v1`. Similarly, if deprecated instances of CronJobs are queried using `kubectl get --all-namespaces cronjobs.v1beta1.batch`, CronJobs with `apiVersions: batch/v1` will also be listed.
+
+In order to indentify if/when deprecated APIs are used, Kubernetes keeps a counter of the usage with some additional information. The data is stored for up to 24 hour after the last API usage.
+
 # List of Deprecated APIs
 The script [scripts/deprecated-by-release.sh](./scripts/deprecated-by-release.sh) creates Kubernetes clusters using the [kind](https://github.com/kubernetes-sigs/kind/) Kubernetes implementation, lists all available Kubernetes APIs and then compares the list with the list of APIs from the previous Kubernetes release.
 
