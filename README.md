@@ -1,7 +1,7 @@
 # Introduction
 This repository provides scripts and data used to determine whether deprecated APIs are being used on a Kubernetes cluster.
 
-Documentation on Kubernetes deprecated APIs can be found in the [Deprecated API Migration Guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/). 
+Documentation on Kubernetes deprecated APIs can be found in the [Deprecated API Migration Guide](https://kubernetes.io/docs/reference/using-api/deprecation-guide/).
 That being said, it has been found that APIs were deprecated without appearing in the document. The first section of this document provides a procedure that compares all available APIs in different Kubernetes versions and identifies which were removed between consecutive version. The scripts used for this procedure are present here for the use of the user. The scripts have been run on Kubernetes version 1.22 through 1.27 and the results are available in the [deprecated](./deprecated) directory.
 
 The second section of the documents checks whether any of the deprecated APIs were created/queried in the previous 24 hours.
